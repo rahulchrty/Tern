@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tern.Api", "Tern.Api\Tern.Api.csproj", "{3EA2B69C-2919-46E8-9C9E-4AD040A73174}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tern.Model", "Tern.Model\Tern.Model.csproj", "{74E36C69-10E0-4A05-ACE5-7E85D253D2E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EA2B69C-2919-46E8-9C9E-4AD040A73174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA2B69C-2919-46E8-9C9E-4AD040A73174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA2B69C-2919-46E8-9C9E-4AD040A73174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA2B69C-2919-46E8-9C9E-4AD040A73174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74E36C69-10E0-4A05-ACE5-7E85D253D2E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74E36C69-10E0-4A05-ACE5-7E85D253D2E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74E36C69-10E0-4A05-ACE5-7E85D253D2E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74E36C69-10E0-4A05-ACE5-7E85D253D2E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2A25C83-0383-4B60-BECD-7FC9AC50F61C}
+	EndGlobalSection
+EndGlobal
