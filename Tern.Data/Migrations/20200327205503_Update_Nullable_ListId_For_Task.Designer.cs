@@ -9,8 +9,8 @@ using Tern.Data;
 namespace Tern.Data.Migrations
 {
     [DbContext(typeof(TernContext))]
-    [Migration("20200327204248_Update_Relations")]
-    partial class Update_Relations
+    [Migration("20200327205503_Update_Nullable_ListId_For_Task")]
+    partial class Update_Nullable_ListId_For_Task
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,9 +83,7 @@ namespace Tern.Data.Migrations
                     b.HasOne("Tern.Domain.List", "List")
                         .WithMany("Tasks")
                         .HasForeignKey("ListId")
-                        .HasConstraintName("FK_List_ListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_List_ListId");
 
                     b.HasOne("Tern.Domain.Status", "Status")
                         .WithMany("Tasks")

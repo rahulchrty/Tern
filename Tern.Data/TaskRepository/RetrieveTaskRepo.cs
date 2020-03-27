@@ -19,8 +19,9 @@ namespace Tern.Data.TaskRepository
                                       {
                                           TaskId = task.TaskId,
                                           Description = task.Description,
-                                          Status = task.StatusId,
-                                          TaskName = task.TaskName
+                                          Status = task.Status.StatusType,
+                                          TaskName = task.TaskName,
+                                          PartOfList = task.List.ListName
                                       }).FirstOrDefault();
             return searchedTask;
         }

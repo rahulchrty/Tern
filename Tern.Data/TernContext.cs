@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Tern.Domain;
 
 namespace Tern.Data
@@ -23,7 +20,7 @@ namespace Tern.Data
                 .HasOne(x => x.List)
                 .WithMany(y => y.Tasks)
                 .HasForeignKey(z => z.ListId)
-                .HasConstraintName("FK_List_ListId");
+                .HasConstraintName("FK_List_ListId").IsRequired(false);
 
             modelBuilder.Entity<Task>()
                 .HasOne(x => x.Status)
