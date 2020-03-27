@@ -24,7 +24,7 @@ namespace Tern.Api.Controllers
         {
             try
             {
-                TaskModel task = new TaskModel { TaskId = 1, TaskName = "my task", Description = "", Status = "active" };
+                TaskModel task = new TaskModel { TaskId = 1, TaskName = "my task", Description = "", Status = 1 };
                 return Created(new Uri($"{Request.Path}/{task.TaskId}", UriKind.Relative), task);
             }
             catch (Exception e)

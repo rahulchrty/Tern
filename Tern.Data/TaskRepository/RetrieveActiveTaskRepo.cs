@@ -17,12 +17,12 @@ namespace Tern.Data.TaskRepository
         public async Task<List<TaskModel>> GetActiveTasks()
         {
             var searchedTask = await (from task in _ternContext.Tasks
-                                      where task.Status == "active"
+                                      where task.StatusId == 1
                                       select new TaskModel
                                       {
                                           TaskId = task.TaskId,
                                           Description = task.Description,
-                                          Status = task.Status,
+                                          Status = task.StatusId,
                                           TaskName = task.TaskName
                                       }).ToListAsync();
             return searchedTask;

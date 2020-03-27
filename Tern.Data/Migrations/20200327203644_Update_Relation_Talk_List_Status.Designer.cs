@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tern.Data;
 
 namespace Tern.Data.Migrations
 {
     [DbContext(typeof(TernContext))]
-    partial class TernContextModelSnapshot : ModelSnapshot
+    [Migration("20200327203644_Update_Relation_Talk_List_Status")]
+    partial class Update_Relation_Talk_List_Status
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,14 +83,12 @@ namespace Tern.Data.Migrations
                     b.HasOne("Tern.Domain.List", "List")
                         .WithMany("Tasks")
                         .HasForeignKey("ListId")
-                        .HasConstraintName("FK_List_ListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Tern.Domain.Status", "Status")
                         .WithMany("Tasks")
                         .HasForeignKey("StatusId")
-                        .HasConstraintName("FK_Status_StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
