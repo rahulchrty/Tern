@@ -31,8 +31,12 @@ namespace Tern.Api
         {
             services.AddControllers();
             services.AddDbContext<TernContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TernDbConnection")));
+            
             services.AddScoped<IRetrieveTask, RetrieveTask>();
+            services.AddScoped<IRetrieveActiveTask, RetrieveActiveTask>();
+
             services.AddScoped<IRetrieveTaskRepo, RetrieveTaskRepo>();
+            services.AddScoped<IRetrieveActiveTaskRepo, RetrieveActiveTaskRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

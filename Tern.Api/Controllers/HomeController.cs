@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tern.Interface.Task;
 using Tern.Model;
 
 namespace Tern.Api.Controllers
@@ -12,12 +13,16 @@ namespace Tern.Api.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
+        private IRetrieveActiveTask _retrieveActiveTask;
+        public HomeController(IRetrieveActiveTask retrieveActiveTask)
+        {
+            _retrieveActiveTask = retrieveActiveTask;
+        }
+
         [HttpGet("ActiveTasks")]
         public async Task<ActionResult<List<TaskModel>>> ActiveTasks()
         {
-            List<TaskModel> tasks = new List<TaskModel>();
-            tasks.Add(new TaskModel { TaskId = 1, TaskName = "my task", Description = "", Status = "active"});
-            return tasks;
+            return await _retrieveActiveTask.GetActiveTasks();
         }
 
         [HttpGet("Groups")]
