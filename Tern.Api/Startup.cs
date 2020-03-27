@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Tern.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tern.Api
 {
@@ -25,6 +27,7 @@ namespace Tern.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<TernContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TernDbConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

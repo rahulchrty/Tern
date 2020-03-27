@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tern.Data;
 using Tern.Model;
 
 namespace Tern.Api.Controllers
@@ -12,6 +13,11 @@ namespace Tern.Api.Controllers
     [ApiController]
     public class TaskController : ControllerBase
     {
+        private TernContext _ternContext;
+        public TaskController(TernContext ternContext)
+        {
+            _ternContext = ternContext;
+        }
         [HttpPost]
         public IActionResult Create([FromForm] CreateTaskModel taskDetail)
         {
@@ -29,7 +35,16 @@ namespace Tern.Api.Controllers
         [HttpGet("{taskId}")]
         public ActionResult<TaskModel> Get([FromRoute] int taskId)
         {
-            return new TaskModel { TaskId = 1, TaskName = "my task", Description = "", Status = "active" };
+            TaskModel searchedTask = (from task in _ternContext.Tasks
+                                      where task.TaskId == taskId
+                                      select new TaskModel
+                                      {
+                                          TaskId = task.TaskId,
+                                          Description = task.Description,
+                                          Status = task.Status,
+                                          TaskName = task.TaskName
+                                      }).FirstOrDefault();
+            return searchedTask;
         }
 
         [HttpPut("{taskId}")]
