@@ -2,10 +2,10 @@
 
 namespace Tern.Model
 {
-    public class GroupModel
+    public class ListModel
     {
-        public int GroupId { get; set; }
-        public string GroupName { get; set; }
+        public int ListId { get; set; }
+        public string ListName { get; set; }
         public List<TaskModel> Tasks { get; set; }
     }
 }

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200327201640_Relation_StatusTask.cs" />
+    <Compile Remove="Migrations\20200327201640_Relation_StatusTask.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tern.Domain\Tern.Domain.csproj" />
+    <ProjectReference Include="..\Tern.Interface\Tern.Interface.csproj" />
+  </ItemGroup>
+
+</Project>
