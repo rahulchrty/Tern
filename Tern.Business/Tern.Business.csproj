@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tern.Data\Tern.Data.csproj" />
     <ProjectReference Include="..\Tern.Interface\Tern.Interface.csproj" />
     <ProjectReference Include="..\Tern.Model\Tern.Model.csproj" />
   </ItemGroup>

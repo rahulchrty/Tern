@@ -21,9 +21,9 @@ namespace Tern.Api.Controllers
         }
 
         [HttpGet("Groups")]
-        public ActionResult<List<GroupModel>> Groups ()
+        public ActionResult<List<ListModel>> Groups ()
         {
-            List<GroupModel> groups = new List<GroupModel>();
+            List<ListModel> groups = new List<ListModel>();
 
             return groups;
         }
