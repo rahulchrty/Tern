@@ -13,7 +13,7 @@ namespace Tern.Api.Controllers
     public class HomeController : ControllerBase
     {
         [HttpGet("ActiveTasks")]
-        public ActionResult<List<TaskModel>> ActiveTasks()
+        public async Task<ActionResult<List<TaskModel>>> ActiveTasks()
         {
             List<TaskModel> tasks = new List<TaskModel>();
             tasks.Add(new TaskModel { TaskId = 1, TaskName = "my task", Description = "", Status = "active"});

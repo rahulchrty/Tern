@@ -11,6 +11,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Tern.Data;
 using Microsoft.EntityFrameworkCore;
+using Tern.Interface.Task;
+using Tern.Business.Task;
+using Tern.Data.TaskRepository;
 
 namespace Tern.Api
 {
@@ -28,6 +31,8 @@ namespace Tern.Api
         {
             services.AddControllers();
             services.AddDbContext<TernContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TernDbConnection")));
+            services.AddScoped<IRetrieveTask, RetrieveTask>();
+            services.AddScoped<IRetrieveTaskRepo, RetrieveTaskRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

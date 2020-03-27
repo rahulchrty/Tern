@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tern.Domain\Tern.Domain.csproj" />
+    <ProjectReference Include="..\Tern.Interface\Tern.Interface.csproj" />
   </ItemGroup>
 
 </Project>
