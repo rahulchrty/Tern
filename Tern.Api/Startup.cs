@@ -42,6 +42,7 @@ namespace Tern.Api
             services.AddScoped<IUpdateTask, UpdateTask>();
             services.AddScoped<IDeleteTask, DeleteTask>();
             services.AddScoped<IDeleteBulk, DeleteBulk>();
+            services.AddScoped<IMoveTask, MoveTask>();
 
             services.AddScoped<IRetrieveTaskRepo, RetrieveTaskRepo>();
             services.AddScoped<IRetrieveActiveTaskRepo, RetrieveActiveTaskRepo>();
@@ -49,6 +50,7 @@ namespace Tern.Api
             services.AddScoped<ICreateTaskRepo, CreateTaskRepo>();
             services.AddScoped<IUpdateTaskRepo, UpdateTaskRepo>();
             services.AddScoped<IDeleteTaskRepo, DeleteTaskRepo>();
+            services.AddScoped<IMoveTaskRepo, MoveTaskRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

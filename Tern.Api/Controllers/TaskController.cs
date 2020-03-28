@@ -19,17 +19,20 @@ namespace Tern.Api.Controllers
         private IUpdateTask _updateTask;
         private IDeleteTask _deleteTask;
         private IDeleteBulk _deleteBulk;
+        private IMoveTask _moveTask;
         public TaskController(IRetrieveTask retrieveTask,
                             ICreateTask createTask,
                             IUpdateTask updateTask,
                             IDeleteTask deleteTask,
-                            IDeleteBulk deleteBulk)
+                            IDeleteBulk deleteBulk,
+                            IMoveTask moveTask)
         {
             _retrieveTask = retrieveTask;
             _createTask = createTask;
             _updateTask = updateTask;
             _deleteTask = deleteTask;
             _deleteBulk = deleteBulk;
+            _moveTask = moveTask;
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreateTaskModel taskDetail)
@@ -70,6 +73,13 @@ namespace Tern.Api.Controllers
         public async Task<IActionResult> AsyncBulkDelete([FromBody] int[] taskIds)
         {
             await _deleteBulk.Delete(taskIds);
+            return StatusCode(204);
+        }
+
+        [HttpPut("{taskId}/MoveToList")]
+        public IActionResult AddToList([FromRoute] int taskId, [FromForm] int listId)
+        {
+            _moveTask.MoveToList(taskId, listId);
             return StatusCode(204);
         }
     }
