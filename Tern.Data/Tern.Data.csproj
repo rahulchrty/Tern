@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Tern.Interface\Tern.Interface.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StatusRepository\" />
+  </ItemGroup>
+
 </Project>
