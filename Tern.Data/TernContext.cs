@@ -33,7 +33,7 @@ namespace Tern.Data
                 .HasOne(x => x.Task)
                 .WithMany(y => y.SubTasks)
                 .HasForeignKey(z => z.TaskId)
-                .HasForeignKey("FK_Task_TaskId")
+                .HasConstraintName("FK_Task_TaskId")
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

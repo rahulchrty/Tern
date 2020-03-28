@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200327201640_Relation_StatusTask.cs" />
     <Compile Remove="Migrations\20200327201640_Relation_StatusTask.Designer.cs" />
+    <Compile Remove="Migrations\20200328144246_SubTask-v2.cs" />
+    <Compile Remove="Migrations\20200328144246_SubTask-v2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
