@@ -15,17 +15,20 @@ namespace Tern.Api.Controllers
     public class TaskController : ControllerBase
     {
         private IRetrieveTask _retrieveTask;
-        public TaskController(IRetrieveTask retrieveTask)
+        private ICreateTask _createTask;
+        public TaskController(IRetrieveTask retrieveTask,
+                            ICreateTask createTask)
         {
             _retrieveTask = retrieveTask;
+            _createTask = createTask;
         }
         [HttpPost]
-        public IActionResult Create([FromForm] CreateTaskModel taskDetail)
+        public async Task<IActionResult> Create([FromForm] CreateTaskModel taskDetail)
         {
             try
             {
-                TaskModel task = new TaskModel { TaskId = 1, TaskName = "my task", Description = "", Status = "" };
-                return Created(new Uri($"{Request.Path}/{task.TaskId}", UriKind.Relative), task);
+               int taskId = await _createTask.CreateNewTask(taskDetail);
+                return Created(new Uri($"{Request.Path}/{taskId}", UriKind.Relative), taskDetail);
             }
             catch (Exception e)
             {

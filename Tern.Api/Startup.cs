@@ -38,10 +38,12 @@ namespace Tern.Api
             services.AddScoped<IRetrieveTask, RetrieveTask>();
             services.AddScoped<IRetrieveActiveTask, RetrieveActiveTask>();
             services.AddScoped<IRetrieveList, RetrieveList>();
+            services.AddScoped<ICreateTask, CreateTask>();
 
             services.AddScoped<IRetrieveTaskRepo, RetrieveTaskRepo>();
             services.AddScoped<IRetrieveActiveTaskRepo, RetrieveActiveTaskRepo>();
             services.AddScoped<IRetrieveListRepo, RetrieveListRepo>();
+            services.AddScoped<ICreateTaskRepo, CreateTaskRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
