@@ -17,13 +17,16 @@ namespace Tern.Api.Controllers
         private IRetrieveTask _retrieveTask;
         private ICreateTask _createTask;
         private IUpdateTask _updateTask;
+        private IDeleteTask _deleteTask;
         public TaskController(IRetrieveTask retrieveTask,
                             ICreateTask createTask,
-                            IUpdateTask updateTask)
+                            IUpdateTask updateTask,
+                            IDeleteTask deleteTask)
         {
             _retrieveTask = retrieveTask;
             _createTask = createTask;
             _updateTask = updateTask;
+            _deleteTask = deleteTask;
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreateTaskModel taskDetail)
@@ -56,6 +59,7 @@ namespace Tern.Api.Controllers
         [HttpDelete("{taskId}")]
         public IActionResult Delete([FromRoute] int taskId)
         {
+            _deleteTask.Delete(taskId);
             return StatusCode(204);
         }
 
