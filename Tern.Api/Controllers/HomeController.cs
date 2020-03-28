@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tern.Interface.List;
 using Tern.Interface.Task;
 using Tern.Model;
 
@@ -14,9 +15,12 @@ namespace Tern.Api.Controllers
     public class HomeController : ControllerBase
     {
         private IRetrieveActiveTask _retrieveActiveTask;
-        public HomeController(IRetrieveActiveTask retrieveActiveTask)
+        private IRetrieveList _retrieveList;
+        public HomeController(IRetrieveActiveTask retrieveActiveTask,
+                            IRetrieveList retrieveList)
         {
             _retrieveActiveTask = retrieveActiveTask;
+            _retrieveList = retrieveList;
         }
 
         [HttpGet("ActiveTasks")]
@@ -25,12 +29,10 @@ namespace Tern.Api.Controllers
             return await _retrieveActiveTask.GetActiveTasks();
         }
 
-        [HttpGet("Groups")]
-        public ActionResult<List<ListModel>> Groups ()
+        [HttpGet("Lists")]
+        public async Task<ActionResult<List<ListModel>>> Lists()
         {
-            List<ListModel> groups = new List<ListModel>();
-
-            return groups;
+            return await _retrieveList.GetAllList();
         }
     }
 }

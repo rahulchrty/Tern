@@ -14,6 +14,9 @@ using Microsoft.EntityFrameworkCore;
 using Tern.Interface.Task;
 using Tern.Business.Task;
 using Tern.Data.TaskRepository;
+using Tern.Interface.List;
+using Tern.Business.List;
+using Tern.Data.ListRepository;
 
 namespace Tern.Api
 {
@@ -34,9 +37,11 @@ namespace Tern.Api
             
             services.AddScoped<IRetrieveTask, RetrieveTask>();
             services.AddScoped<IRetrieveActiveTask, RetrieveActiveTask>();
+            services.AddScoped<IRetrieveList, RetrieveList>();
 
             services.AddScoped<IRetrieveTaskRepo, RetrieveTaskRepo>();
             services.AddScoped<IRetrieveActiveTaskRepo, RetrieveActiveTaskRepo>();
+            services.AddScoped<IRetrieveListRepo, RetrieveListRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
