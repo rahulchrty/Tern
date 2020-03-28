@@ -1,4 +1,4 @@
-﻿using Tern.Domain;
+﻿using System.Threading.Tasks;
 using Tern.Interface.Task;
 
 namespace Tern.Data.TaskRepository
@@ -12,10 +12,19 @@ namespace Tern.Data.TaskRepository
         }
         public int Delete(int taskId)
         {
-            Task task = new Task { TaskId = taskId};
+            Domain.Task task = new Domain.Task { TaskId = taskId};
             _ternContext.Tasks.Attach(task);
             _ternContext.Tasks.Remove(task);
             int rowAffected = _ternContext.SaveChanges();
+            return rowAffected;
+        }
+
+        public async Task<int> DeleteAsync(int taskId)
+        {
+            Domain.Task task = new Domain.Task { TaskId = taskId };
+            _ternContext.Tasks.Attach(task);
+            _ternContext.Tasks.Remove(task);
+            int rowAffected = await _ternContext.SaveChangesAsync();
             return rowAffected;
         }
     }

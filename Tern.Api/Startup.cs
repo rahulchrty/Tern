@@ -41,6 +41,7 @@ namespace Tern.Api
             services.AddScoped<ICreateTask, CreateTask>();
             services.AddScoped<IUpdateTask, UpdateTask>();
             services.AddScoped<IDeleteTask, DeleteTask>();
+            services.AddScoped<IDeleteBulk, DeleteBulk>();
 
             services.AddScoped<IRetrieveTaskRepo, RetrieveTaskRepo>();
             services.AddScoped<IRetrieveActiveTaskRepo, RetrieveActiveTaskRepo>();
