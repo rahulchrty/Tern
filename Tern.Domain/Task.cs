@@ -1,4 +1,6 @@
-﻿namespace Tern.Domain
+﻿using System.Collections.Generic;
+
+namespace Tern.Domain
 {
     public class Task
     {
@@ -9,5 +11,6 @@
         public Status Status { get; set; }
         public int? ListId { get; set; }
         public List List { get; set; }
+        public ICollection<SubTask> SubTasks { get; set; }
     }
 }
