@@ -16,13 +16,16 @@ namespace Tern.Api.Controllers
         private ICreateSubTask _createSubTask;
         private IRetrieveSubTask _retrieveSubTask;
         private ISubTaskByTask _subTaskByTask;
+        private IDeleteSubTask _deleteSubTask;
         public SubTaskController(ICreateSubTask createSubTask,
                                 IRetrieveSubTask retrieveSubTask,
-                                ISubTaskByTask subTaskByTask)
+                                ISubTaskByTask subTaskByTask,
+                                IDeleteSubTask deleteSubTask)
         {
             _createSubTask = createSubTask;
             _retrieveSubTask = retrieveSubTask;
             _subTaskByTask = subTaskByTask;
+            _deleteSubTask = deleteSubTask;
         }
         [HttpPost]
         public async Task<ActionResult> Create([FromForm] CreateSubTaskModel subTask)
@@ -41,6 +44,13 @@ namespace Tern.Api.Controllers
         public async Task<ActionResult<List<SubTaskModel>>> GetSubTask([FromQuery] int taskId)
         {
             return await _subTaskByTask.GetSubTask(taskId);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] int[] subTaskIds)
+        {
+            await _deleteSubTask.Delete(subTaskIds);
+            return StatusCode(204);
         }
     }
 }
