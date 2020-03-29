@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tern.Data;
 
 namespace Tern.Data.Migrations
 {
     [DbContext(typeof(TernContext))]
-    partial class TernContextModelSnapshot : ModelSnapshot
+    [Migration("20200329044141_Update_Status_To_SubTask")]
+    partial class Update_Status_To_SubTask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

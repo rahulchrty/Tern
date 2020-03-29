@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20200327201640_Relation_StatusTask.Designer.cs" />
     <Compile Remove="Migrations\20200328144246_SubTask-v2.cs" />
     <Compile Remove="Migrations\20200328144246_SubTask-v2.Designer.cs" />
+    <Compile Remove="Migrations\20200329044001_Update_Added_Status_To_SubTask.cs" />
+    <Compile Remove="Migrations\20200329044001_Update_Added_Status_To_SubTask.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
