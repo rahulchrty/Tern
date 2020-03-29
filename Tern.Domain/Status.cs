@@ -7,5 +7,6 @@ namespace Tern.Domain
         public int StatusId { get; set; }
         public string StatusType { get; set; }
         public ICollection<Task> Tasks { get; set; }
+        public ICollection<SubTask> SubTasks { get; set; }
     }
 }

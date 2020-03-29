@@ -4,6 +4,6 @@
     {
         public string TaskName { get; set; }
         public string Description { get; set; }
-        public int GroupId { get; set; }
+        public int? ListId { get; set; }
     }
 }

@@ -8,4 +8,9 @@
     <ProjectReference Include="..\Tern.Model\Tern.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Status\Business\" />
+    <Folder Include="Status\Repository\" />
+  </ItemGroup>
+
 </Project>

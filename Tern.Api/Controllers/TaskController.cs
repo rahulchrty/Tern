@@ -15,17 +15,35 @@ namespace Tern.Api.Controllers
     public class TaskController : ControllerBase
     {
         private IRetrieveTask _retrieveTask;
-        public TaskController(IRetrieveTask retrieveTask)
+        private ICreateTask _createTask;
+        private IUpdateTask _updateTask;
+        private IDeleteTask _deleteTask;
+        private IDeleteBulk _deleteBulk;
+        private IMoveTask _moveTask;
+        private ITaskStatus _taskStatus;
+        public TaskController(IRetrieveTask retrieveTask,
+                            ICreateTask createTask,
+                            IUpdateTask updateTask,
+                            IDeleteTask deleteTask,
+                            IDeleteBulk deleteBulk,
+                            IMoveTask moveTask,
+                            ITaskStatus taskStatus)
         {
             _retrieveTask = retrieveTask;
+            _createTask = createTask;
+            _updateTask = updateTask;
+            _deleteTask = deleteTask;
+            _deleteBulk = deleteBulk;
+            _moveTask = moveTask;
+            _taskStatus = taskStatus;
         }
         [HttpPost]
-        public IActionResult Create([FromForm] CreateTaskModel taskDetail)
+        public async Task<IActionResult> Create([FromForm] CreateTaskModel taskDetail)
         {
             try
             {
-                TaskModel task = new TaskModel { TaskId = 1, TaskName = "my task", Description = "", Status = "" };
-                return Created(new Uri($"{Request.Path}/{task.TaskId}", UriKind.Relative), task);
+                int taskId = await _createTask.CreateNewTask(taskDetail);
+                return Created(new Uri($"{Request.Path}/{taskId}", UriKind.Relative), taskDetail);
             }
             catch (Exception e)
             {
@@ -41,20 +59,37 @@ namespace Tern.Api.Controllers
         }
 
         [HttpPut("{taskId}")]
-        public IActionResult Update([FromRoute] int taskId, [FromForm] CreateTaskModel taskDetail)
+        public async Task<IActionResult> Update([FromRoute] int taskId, [FromBody] TaskModel taskDetail)
         {
+            await _updateTask.Update(taskDetail);
             return StatusCode(204);
         }
 
         [HttpDelete("{taskId}")]
         public IActionResult Delete([FromRoute] int taskId)
         {
+            _deleteTask.Delete(taskId);
             return StatusCode(204);
         }
 
-        [HttpPost("DeleteMany")]
+        [HttpDelete("DeleteMany")]
         public async Task<IActionResult> AsyncBulkDelete([FromBody] int[] taskIds)
         {
+            await _deleteBulk.Delete(taskIds);
+            return StatusCode(204);
+        }
+
+        [HttpPut("{taskId}/MoveToList")]
+        public IActionResult AddToList([FromRoute] int taskId, [FromForm] int listId)
+        {
+            _moveTask.MoveToList(taskId, listId);
+            return StatusCode(204);
+        }
+
+        [HttpPut("{taskId}/Status")]
+        public IActionResult UpdateStatus ([FromRoute] int taskId, [FromForm] int statusId)
+        {
+            _taskStatus.UpdateStatus(taskId, statusId);
             return StatusCode(204);
         }
     }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tern.Data;
 
 namespace Tern.Data.Migrations
 {
     [DbContext(typeof(TernContext))]
-    partial class TernContextModelSnapshot : ModelSnapshot
+    [Migration("20200328150951_SubTask_Remove_Description-v2")]
+    partial class SubTask_Remove_Descriptionv2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,9 +58,6 @@ namespace Tern.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SubTaskName")
                         .HasColumnType("nvarchar(max)");
 
@@ -66,8 +65,6 @@ namespace Tern.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("SubTaskId");
-
-                    b.HasIndex("StatusId");
 
                     b.HasIndex("TaskId");
 
@@ -104,13 +101,6 @@ namespace Tern.Data.Migrations
 
             modelBuilder.Entity("Tern.Domain.SubTask", b =>
                 {
-                    b.HasOne("Tern.Domain.Status", "Status")
-                        .WithMany("SubTasks")
-                        .HasForeignKey("StatusId")
-                        .HasConstraintName("FK_Status_SubTask_StatusId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
-                        .IsRequired();
-
                     b.HasOne("Tern.Domain.Task", "Task")
                         .WithMany("SubTasks")
                         .HasForeignKey("TaskId")
@@ -129,8 +119,8 @@ namespace Tern.Data.Migrations
                     b.HasOne("Tern.Domain.Status", "Status")
                         .WithMany("Tasks")
                         .HasForeignKey("StatusId")
-                        .HasConstraintName("FK_Status_Task_StatusId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .HasConstraintName("FK_Status_StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

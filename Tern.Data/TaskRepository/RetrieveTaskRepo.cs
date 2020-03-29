@@ -7,7 +7,7 @@ namespace Tern.Data.TaskRepository
     public class RetrieveTaskRepo : IRetrieveTaskRepo
     {
         private TernContext _ternContext;
-        public RetrieveTaskRepo (TernContext ternContext)
+        public RetrieveTaskRepo(TernContext ternContext)
         {
             _ternContext = ternContext;
         }
@@ -19,9 +19,17 @@ namespace Tern.Data.TaskRepository
                                       {
                                           TaskId = task.TaskId,
                                           Description = task.Description,
-                                          Status = task.Status.StatusType,
+                                          Status = new StatusModel
+                                          {
+                                              StatusId = task.StatusId,
+                                              StatusType = task.Status.StatusType
+                                          },
                                           TaskName = task.TaskName,
-                                          PartOfList = task.List.ListName
+                                          List = new ListModel
+                                          {
+                                              ListId = task.List.ListId,
+                                              ListName = task.List.ListName
+                                          }
                                       }).FirstOrDefault();
             return searchedTask;
         }

@@ -13,6 +13,7 @@ namespace Tern.Data
         public DbSet<Status> Status { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<List> Lists { get; set; }
+        public DbSet<SubTask> SubTasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,7 +27,22 @@ namespace Tern.Data
                 .HasOne(x => x.Status)
                 .WithMany(y => y.Tasks)
                 .HasForeignKey(z => z.StatusId)
-                .HasConstraintName("FK_Status_StatusId");
+                .HasConstraintName("FK_Status_Task_StatusId")
+                .OnDelete(DeleteBehavior.ClientNoAction);
+
+            modelBuilder.Entity<SubTask>()
+                .HasOne(x => x.Task)
+                .WithMany(y => y.SubTasks)
+                .HasForeignKey(z => z.TaskId)
+                .HasConstraintName("FK_Task_TaskId")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<SubTask>()
+                .HasOne(x => x.Status)
+                .WithMany(y => y.SubTasks)
+                .HasForeignKey(z => z.StatusId)
+                .HasConstraintName("FK_Status_SubTask_StatusId")
+                .OnDelete(DeleteBehavior.ClientNoAction);
         }
     }
 }
