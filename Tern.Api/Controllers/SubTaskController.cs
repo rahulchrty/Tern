@@ -14,15 +14,24 @@ namespace Tern.Api.Controllers
     public class SubTaskController : ControllerBase
     {
         private ICreateSubTask _createSubTask;
-        public SubTaskController(ICreateSubTask createSubTask)
+        private IRetrieveSubTask _retrieveSubTask;
+        public SubTaskController(ICreateSubTask createSubTask,
+                                IRetrieveSubTask retrieveSubTask)
         {
             _createSubTask = createSubTask;
+            _retrieveSubTask = retrieveSubTask;
         }
         [HttpPost]
         public async Task<ActionResult> Create([FromForm] CreateSubTaskModel subTask)
         {
             int subTaskId = await _createSubTask.Create(subTask);
             return Created(new Uri($"{Request.Path}/{subTaskId}", UriKind.Relative), subTask); ;   
+        }
+
+        [HttpGet("{subTaskId}")]
+        public ActionResult<SubTaskModel> GetSubTaskById ([FromRoute] int subTaskId)
+        {
+            return _retrieveSubTask.GetSubTask(subTaskId);
         }
     }
 }

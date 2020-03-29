@@ -17,6 +17,9 @@ using Tern.Data.TaskRepository;
 using Tern.Interface.List;
 using Tern.Business.List;
 using Tern.Data.ListRepository;
+using Tern.Interface.SubTask;
+using Tern.Data.SubTaskRepository;
+using Tern.Business.SubTask;
 
 namespace Tern.Api
 {
@@ -44,6 +47,8 @@ namespace Tern.Api
             services.AddScoped<IDeleteBulk, DeleteBulk>();
             services.AddScoped<IMoveTask, MoveTask>();
             services.AddScoped<ITaskStatus, Tern.Business.Task.TaskStatus>();
+            services.AddScoped<ICreateSubTask, CreateSubTask>();
+            services.AddScoped<IRetrieveSubTask, RetrieveSubTask>();
 
             services.AddScoped<IRetrieveTaskRepo, RetrieveTaskRepo>();
             services.AddScoped<IRetrieveActiveTaskRepo, RetrieveActiveTaskRepo>();
@@ -53,6 +58,8 @@ namespace Tern.Api
             services.AddScoped<IDeleteTaskRepo, DeleteTaskRepo>();
             services.AddScoped<IMoveTaskRepo, MoveTaskRepo>();
             services.AddScoped<ITaskStatusRepo, TaskStatusRepo>();
+            services.AddScoped<ICreateSubTaskRepo, CreateSubTaskRepo>();
+            services.AddScoped<IRetrieveSubTaskRepo, RetrieveSubTaskRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
