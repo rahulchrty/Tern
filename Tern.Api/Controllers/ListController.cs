@@ -14,15 +14,18 @@ namespace Tern.Api.Controllers
     public class ListController : ControllerBase
     {
         private IRetrieveListById _retrieveListById;
-        public ListController(IRetrieveListById retrieveListById)
+        private ICreateList _createList;
+        public ListController(IRetrieveListById retrieveListById,
+                            ICreateList createList)
         {
             _retrieveListById = retrieveListById;
+            _createList = createList;
         }
         [HttpPost]
         public IActionResult Create ([FromForm] string listName)
         {
-            ListModel list = new ListModel();
-            return Created(new Uri($"{Request.Path}/{list.ListId}", UriKind.Relative), list);
+            int listId = _createList.Create(listName);
+            return Created(Url.RouteUrl(listId), listId);
         }
 
         [HttpGet("{listId}")]

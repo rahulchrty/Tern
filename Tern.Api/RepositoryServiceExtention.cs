@@ -20,13 +20,14 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ITaskStatusRepo, TaskStatusRepo>();
 
             services.AddScoped<IRetrieveListRepo, RetrieveListRepo>();
+            services.AddScoped<IRetrieveListByIdRepo, RetrieveListByIdRepo>();
+            services.AddScoped<ICreateListRepo, CreateListRepo>();
 
             services.AddScoped<ICreateSubTaskRepo, CreateSubTaskRepo>();
             services.AddScoped<IRetrieveSubTaskRepo, RetrieveSubTaskRepo>();
             services.AddScoped<ISubTaskByTaskRepo, SubTaskByTaskRepo>();
             services.AddScoped<IDeleteSubTaskRepo, DeleteSubTaskRepo>();
             services.AddScoped<IUpdateSubTaskTitleRepo, UpdateSubTaskTitleRepo>();
-            services.AddScoped<IRetrieveListByIdRepo, RetrieveListByIdRepo>();
             return services;
         }
     }
