@@ -22,6 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IRetrieveListRepo, RetrieveListRepo>();
             services.AddScoped<IRetrieveListByIdRepo, RetrieveListByIdRepo>();
             services.AddScoped<ICreateListRepo, CreateListRepo>();
+            services.AddScoped<IUpdateListRepo, UpdateListRepo>();
 
             services.AddScoped<ICreateSubTaskRepo, CreateSubTaskRepo>();
             services.AddScoped<IRetrieveSubTaskRepo, RetrieveSubTaskRepo>();

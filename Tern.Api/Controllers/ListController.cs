@@ -15,11 +15,14 @@ namespace Tern.Api.Controllers
     {
         private IRetrieveListById _retrieveListById;
         private ICreateList _createList;
+        private IUpdateList _updateList;
         public ListController(IRetrieveListById retrieveListById,
-                            ICreateList createList)
+                            ICreateList createList,
+                            IUpdateList updateList)
         {
             _retrieveListById = retrieveListById;
             _createList = createList;
+            _updateList = updateList;
         }
         [HttpPost]
         public IActionResult Create ([FromForm] string listName)
@@ -37,6 +40,7 @@ namespace Tern.Api.Controllers
         [HttpPut("{listId}")]
         public IActionResult Update ([FromRoute] int listId, [FromForm] string listName)
         {
+            _updateList.Update(listId, listName);
             return StatusCode(204);
         }
 
