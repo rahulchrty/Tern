@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tern.Interface.List;
 using Tern.Model;
 
 namespace Tern.Api.Controllers
@@ -12,6 +13,11 @@ namespace Tern.Api.Controllers
     [ApiController]
     public class ListController : ControllerBase
     {
+        private IRetrieveListById _retrieveListById;
+        public ListController(IRetrieveListById retrieveListById)
+        {
+            _retrieveListById = retrieveListById;
+        }
         [HttpPost]
         public IActionResult Create ([FromForm] string listName)
         {
@@ -22,8 +28,7 @@ namespace Tern.Api.Controllers
         [HttpGet("{listId}")]
         public ActionResult<ListModel> Get ([FromRoute] int listId)
         {
-            ListModel list = new ListModel { ListId = 1, ListName = "My list", Tasks = new List<TaskModel>()};
-            return list;
+            return _retrieveListById.GetListById(listId); ;
         }
 
         [HttpPut("{listId}")]

@@ -27,6 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ISubTaskByTask, SubTaskByTask>();
             services.AddScoped<IDeleteSubTask, DeleteSubTask>();
             services.AddScoped<IUpdateSubTaskTitle, UpdateSubTaskTitle>();
+            services.AddScoped<IRetrieveListById, RetrieveListById>();
             return services;
         }
     }
