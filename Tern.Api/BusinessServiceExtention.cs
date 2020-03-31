@@ -34,6 +34,9 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IUpdateSubTaskTitle, UpdateSubTaskTitle>();
 
             services.AddScoped<IRetrieveStatus, RetrieveStatus>();
+            services.AddScoped<IDeleteList, DeleteListWithTask>();
+            services.AddScoped<IDeleteList, DeleteOnlyList>();
+            services.AddScoped<IDeleteListFlow, DeleteListFlow>();
             return services;
         }
     }
