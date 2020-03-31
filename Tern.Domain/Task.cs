@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tern.Domain
 {
     public class Task
     {
         public int TaskId { get; set; }
+        [Required]
         public string TaskName { get; set; }
         public string Description { get; set; }
         public int StatusId { get; set; }

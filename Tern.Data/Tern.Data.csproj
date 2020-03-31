@@ -13,6 +13,8 @@
     <Compile Remove="Migrations\20200329044001_Update_Added_Status_To_SubTask.Designer.cs" />
     <Compile Remove="Migrations\20200331172000_ListTask_Delete_SetNull-v2.cs" />
     <Compile Remove="Migrations\20200331172000_ListTask_Delete_SetNull-v2.Designer.cs" />
+    <Compile Remove="Migrations\20200331194912_Marked_Require_Fields.cs" />
+    <Compile Remove="Migrations\20200331194912_Marked_Require_Fields.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

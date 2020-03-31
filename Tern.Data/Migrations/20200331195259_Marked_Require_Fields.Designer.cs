@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tern.Data;
 
 namespace Tern.Data.Migrations
 {
     [DbContext(typeof(TernContext))]
-    partial class TernContextModelSnapshot : ModelSnapshot
+    [Migration("20200331195259_Marked_Require_Fields")]
+    partial class Marked_Require_Fields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
