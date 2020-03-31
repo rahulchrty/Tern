@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tern.Domain
 {
@@ -11,5 +12,7 @@ namespace Tern.Domain
         public Task Task { get; set; }
         public int StatusId { get; set; }
         public Status Status { get; set; }
+        [Required]
+        public DateTime CreatedDate { get; set; }
     }
 }

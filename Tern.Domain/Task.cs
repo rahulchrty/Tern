@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Tern.Domain
@@ -13,6 +14,8 @@ namespace Tern.Domain
         public Status Status { get; set; }
         public int? ListId { get; set; }
         public List List { get; set; }
+        [Required]
+        public DateTime CreatedDate { get; set; }
         public ICollection<SubTask> SubTasks { get; set; }
     }
 }

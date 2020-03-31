@@ -1,4 +1,5 @@
-﻿using Tern.Domain;
+﻿using System;
+using Tern.Domain;
 using Tern.Interface.List;
 
 namespace Tern.Data.ListRepository
@@ -12,7 +13,7 @@ namespace Tern.Data.ListRepository
         }
         public int Create(string listName)
         {
-            List newList = new List { ListName = listName };
+            List newList = new List { ListName = listName , CreatedDate = DateTime.Now};
             _ternContext.Lists.Add(newList);
             _ternContext.SaveChanges();
             return newList.ListId;
