@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tern.Interface.List;
 using Tern.Model;
 
 namespace Tern.Api.Controllers
@@ -12,23 +13,34 @@ namespace Tern.Api.Controllers
     [ApiController]
     public class ListController : ControllerBase
     {
+        private IRetrieveListById _retrieveListById;
+        private ICreateList _createList;
+        private IUpdateList _updateList;
+        public ListController(IRetrieveListById retrieveListById,
+                            ICreateList createList,
+                            IUpdateList updateList)
+        {
+            _retrieveListById = retrieveListById;
+            _createList = createList;
+            _updateList = updateList;
+        }
         [HttpPost]
         public IActionResult Create ([FromForm] string listName)
         {
-            ListModel list = new ListModel();
-            return Created(new Uri($"{Request.Path}/{list.ListId}", UriKind.Relative), list);
+            int listId = _createList.Create(listName);
+            return Created(Url.RouteUrl(listId), listId);
         }
 
         [HttpGet("{listId}")]
         public ActionResult<ListModel> Get ([FromRoute] int listId)
         {
-            ListModel list = new ListModel { ListId = 1, ListName = "My list", Tasks = new List<TaskModel>()};
-            return list;
+            return _retrieveListById.GetListById(listId); ;
         }
 
         [HttpPut("{listId}")]
         public IActionResult Update ([FromRoute] int listId, [FromForm] string listName)
         {
+            _updateList.Update(listId, listName);
             return StatusCode(204);
         }
 
