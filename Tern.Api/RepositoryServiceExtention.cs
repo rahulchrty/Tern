@@ -1,7 +1,9 @@
 ﻿using Tern.Data.ListRepository;
+using Tern.Data.StatusRepository;
 using Tern.Data.SubTaskRepository;
 using Tern.Data.TaskRepository;
 using Tern.Interface.List;
+using Tern.Interface.Status;
 using Tern.Interface.SubTask;
 using Tern.Interface.Task;
 
@@ -29,6 +31,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ISubTaskByTaskRepo, SubTaskByTaskRepo>();
             services.AddScoped<IDeleteSubTaskRepo, DeleteSubTaskRepo>();
             services.AddScoped<IUpdateSubTaskTitleRepo, UpdateSubTaskTitleRepo>();
+
+            services.AddScoped<IRetrieveStatusRepo, RetrieveStatusRepo>();
             return services;
         }
     }

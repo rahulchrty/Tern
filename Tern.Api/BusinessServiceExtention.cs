@@ -1,7 +1,9 @@
 ﻿using Tern.Business.List;
+using Tern.Business.Status;
 using Tern.Business.SubTask;
 using Tern.Business.Task;
 using Tern.Interface.List;
+using Tern.Interface.Status;
 using Tern.Interface.SubTask;
 using Tern.Interface.Task;
 
@@ -30,6 +32,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ISubTaskByTask, SubTaskByTask>();
             services.AddScoped<IDeleteSubTask, DeleteSubTask>();
             services.AddScoped<IUpdateSubTaskTitle, UpdateSubTaskTitle>();
+
+            services.AddScoped<IRetrieveStatus, RetrieveStatus>();
             return services;
         }
     }
