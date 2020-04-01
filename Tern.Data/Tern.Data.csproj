@@ -11,6 +11,14 @@
     <Compile Remove="Migrations\20200328144246_SubTask-v2.Designer.cs" />
     <Compile Remove="Migrations\20200329044001_Update_Added_Status_To_SubTask.cs" />
     <Compile Remove="Migrations\20200329044001_Update_Added_Status_To_SubTask.Designer.cs" />
+    <Compile Remove="Migrations\20200331172000_ListTask_Delete_SetNull-v2.cs" />
+    <Compile Remove="Migrations\20200331172000_ListTask_Delete_SetNull-v2.Designer.cs" />
+    <Compile Remove="Migrations\20200331194912_Marked_Require_Fields.cs" />
+    <Compile Remove="Migrations\20200331194912_Marked_Require_Fields.Designer.cs" />
+    <Compile Remove="Migrations\20200331201206_Added_CreateDate_Col_UTC.cs" />
+    <Compile Remove="Migrations\20200331201206_Added_CreateDate_Col_UTC.Designer.cs" />
+    <Compile Remove="Migrations\20200331201548_Added_CreateDate_Col_UTC.cs" />
+    <Compile Remove="Migrations\20200331201548_Added_CreateDate_Col_UTC.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

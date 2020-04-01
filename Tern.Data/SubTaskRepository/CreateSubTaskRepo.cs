@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Tern.Interface.SubTask;
 using Tern.Model;
 
@@ -17,7 +18,8 @@ namespace Tern.Data.SubTaskRepository
             {
                 SubTaskName = subTask.SubTaskName,
                 TaskId = subTask.TaskId,
-                StatusId = 1
+                StatusId = 1,
+                CreatedDate = DateTime.Now
             };
             _ternContext.SubTasks.Add(newSubTask);
             await _ternContext.SaveChangesAsync();

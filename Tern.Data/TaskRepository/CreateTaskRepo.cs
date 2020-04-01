@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Tern.Interface.Task;
 using Tern.Model;
 
@@ -17,7 +18,8 @@ namespace Tern.Data.TaskRepository
                 TaskName = taskDetail.TaskName,
                 Description = taskDetail.Description,
                 ListId = null,
-                StatusId = 1
+                StatusId = 1,
+                CreatedDate = DateTime.Now
             };
             _ternContext.Tasks.Add(task);
             await _ternContext.SaveChangesAsync();

@@ -16,13 +16,16 @@ namespace Tern.Api.Controllers
         private IRetrieveListById _retrieveListById;
         private ICreateList _createList;
         private IUpdateList _updateList;
+        private IDeleteListFlow _deleteListFlow;
         public ListController(IRetrieveListById retrieveListById,
                             ICreateList createList,
-                            IUpdateList updateList)
+                            IUpdateList updateList,
+                            IDeleteListFlow deleteListFlow)
         {
             _retrieveListById = retrieveListById;
             _createList = createList;
             _updateList = updateList;
+            _deleteListFlow = deleteListFlow;
         }
         [HttpPost]
         public IActionResult Create ([FromForm] string listName)
@@ -44,10 +47,10 @@ namespace Tern.Api.Controllers
             return StatusCode(204);
         }
 
-        [HttpDelete("{listId}")]
-        public async Task<IActionResult> Delete ([FromRoute] int listId, [FromQuery] bool isDeleteAllTasks)
+        [HttpDelete]
+        public async Task<ActionResult<int>> Delete ([FromForm] int listId, [FromForm] bool isDeleteAllTasks)
         {
-            return StatusCode(204);
+            return await _deleteListFlow.Delete(listId, isDeleteAllTasks);
         }
     }
 }

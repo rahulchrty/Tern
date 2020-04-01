@@ -21,7 +21,8 @@ namespace Tern.Data
                 .HasOne(x => x.List)
                 .WithMany(y => y.Tasks)
                 .HasForeignKey(z => z.ListId)
-                .HasConstraintName("FK_List_ListId").IsRequired(false);
+                .HasConstraintName("FK_List_ListId")
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
             modelBuilder.Entity<Task>()
                 .HasOne(x => x.Status)

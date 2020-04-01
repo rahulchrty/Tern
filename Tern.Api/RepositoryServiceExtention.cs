@@ -33,6 +33,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IUpdateSubTaskTitleRepo, UpdateSubTaskTitleRepo>();
 
             services.AddScoped<IRetrieveStatusRepo, RetrieveStatusRepo>();
+            services.AddScoped<IDeleteListWithTaskRepo, DeleteListWithTaskRepo>();
+            services.AddScoped<IDeleteOnlyListRepo, DeleteOnlyListRepo>();
             return services;
         }
     }
