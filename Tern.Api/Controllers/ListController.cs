@@ -27,6 +27,7 @@ namespace Tern.Api.Controllers
             _updateList = updateList;
             _deleteListFlow = deleteListFlow;
         }
+
         [HttpPost]
         public IActionResult Create ([FromForm] string listName)
         {
@@ -37,7 +38,22 @@ namespace Tern.Api.Controllers
         [HttpGet("{listId}")]
         public ActionResult<ListModel> Get ([FromRoute] int listId)
         {
-            return _retrieveListById.GetListById(listId); ;
+            try
+            {
+                ListModel list = _retrieveListById.GetListById(listId);
+                if (list != null)
+                {
+                    return list;
+                }
+                else
+                {
+                    return StatusCode(404);
+                }
+            }
+            catch(Exception)
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpPut("{listId}")]
