@@ -17,6 +17,8 @@ namespace Tern.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("dbo");
+
             modelBuilder.Entity<Task>()
                 .HasOne(x => x.List)
                 .WithMany(y => y.Tasks)
