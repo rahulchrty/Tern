@@ -21,7 +21,7 @@ namespace Tern.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<TernContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TernDbConnection")));
+            services.AddDbContext<TernContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TernDbConnection"), opt => opt.MaxBatchSize(150)));
             services.AddBusinessService();
             services.AddRepositoryService();
         }
