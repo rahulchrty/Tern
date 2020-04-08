@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Tern.Data.ListRepository
             {
                 try
                 {
-                    List<Domain.Task> tasks = _ternContext.Tasks.Where(x => x.ListId == listId).ToList();
+                    List<Domain.Task> tasks = _ternContext.Tasks.AsNoTracking().Where(x => x.ListId == listId).ToList();
                     _ternContext.Tasks.RemoveRange(tasks);
                     rowAffacted += await _ternContext.SaveChangesAsync();
 

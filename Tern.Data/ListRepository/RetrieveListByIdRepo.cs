@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Tern.Interface.List;
 using Tern.Model;
 
@@ -13,7 +14,7 @@ namespace Tern.Data.ListRepository
         }
         public ListModel GetListById(int listId)
         {
-            ListModel searchedList = (from list in _ternContext.Lists
+            ListModel searchedList = (from list in _ternContext.Lists.AsNoTracking()
                                       where list.ListId == listId
                                       select new ListModel
                                       {

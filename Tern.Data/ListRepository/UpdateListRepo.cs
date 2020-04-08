@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Tern.Domain;
 using Tern.Interface.List;
 
@@ -14,7 +15,7 @@ namespace Tern.Data.ListRepository
         public int Update(int listId, string listName)
         {
             int rowAffacted = 0;
-            List list = _ternContext.Lists.FirstOrDefault(x=>x.ListId == listId);
+            List list = _ternContext.Lists.AsNoTracking().FirstOrDefault(x=>x.ListId == listId);
             if (list != null)
             {
                 list.ListName = listName;

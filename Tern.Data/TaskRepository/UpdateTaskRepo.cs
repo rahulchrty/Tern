@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 using Tern.Interface.Task;
 using Tern.Model;
@@ -15,7 +16,7 @@ namespace Tern.Data.TaskRepository
         public async Task<int> Update(TaskModel taskDetail)
         {
             int recordAffected = 0;
-            Domain.Task task = _ternContext.Tasks.FirstOrDefault(x => x.TaskId == taskDetail.TaskId);
+            Domain.Task task = _ternContext.Tasks.AsNoTracking().FirstOrDefault(x => x.TaskId == taskDetail.TaskId);
             if (task != null)
             {
                 task.TaskName = taskDetail.TaskName;

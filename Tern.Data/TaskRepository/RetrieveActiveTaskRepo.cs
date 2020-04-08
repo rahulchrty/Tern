@@ -16,7 +16,7 @@ namespace Tern.Data.TaskRepository
         }
         public async Task<List<TaskModel>> GetActiveTasks()
         {
-            var searchedTask = await (from task in _ternContext.Tasks
+            var searchedTask = await (from task in _ternContext.Tasks.AsNoTracking()
                                       where task.StatusId == 1
                                       select new TaskModel
                                       {

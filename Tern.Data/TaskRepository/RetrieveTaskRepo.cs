@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Tern.Interface.Task;
 using Tern.Model;
 
@@ -13,7 +14,7 @@ namespace Tern.Data.TaskRepository
         }
         public TaskModel GetTaskById(int taskId)
         {
-            TaskModel searchedTask = (from task in _ternContext.Tasks
+            TaskModel searchedTask = (from task in _ternContext.Tasks.AsNoTracking()
                                       where task.TaskId == taskId
                                       select new TaskModel
                                       {

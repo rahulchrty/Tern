@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Tern.Interface.SubTask;
 using Tern.Model;
 
@@ -13,7 +14,7 @@ namespace Tern.Data.SubTaskRepository
         }
         public SubTaskModel GetSubTask(int subTaskId)
         {
-            SubTaskModel searchedSubTask = (from subTask in _ternContext.SubTasks
+            SubTaskModel searchedSubTask = (from subTask in _ternContext.SubTasks.AsNoTracking()
                                             where subTask.SubTaskId == subTaskId
                                             select new SubTaskModel
                                             {

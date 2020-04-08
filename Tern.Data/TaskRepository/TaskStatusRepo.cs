@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Tern.Domain;
 using Tern.Interface.Task;
 
@@ -14,7 +15,7 @@ namespace Tern.Data.TaskRepository
         public int UpdateStatus(int taskId, int statusId)
         {
             int rowAffected = 0;
-            Task task = _ternContext.Tasks.FirstOrDefault(x => x.TaskId == taskId);
+            Task task = _ternContext.Tasks.AsNoTracking().FirstOrDefault(x => x.TaskId == taskId);
             if (task != null)
             {
                 task.StatusId = statusId;

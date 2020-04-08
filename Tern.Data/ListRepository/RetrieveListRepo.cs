@@ -16,7 +16,7 @@ namespace Tern.Data.ListRepository
         }
         public async Task<List<ListModel>> GetAllList()
         {
-            List<ListModel> lists = await (from list in _ternContext.Lists
+            List<ListModel> lists = await (from list in _ternContext.Lists.AsNoTracking()
                                            select new ListModel
                                            {
                                                ListId = list.ListId,

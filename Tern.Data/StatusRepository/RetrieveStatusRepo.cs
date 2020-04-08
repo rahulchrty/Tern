@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using Tern.Interface.Status;
 using Tern.Model;
@@ -14,8 +15,8 @@ namespace Tern.Data.StatusRepository
         }
         public List<StatusModel> GetStatus()
         {
-            List<StatusModel> allStatus = (from status in _ternContext.Status
-                                     select new StatusModel
+            List<StatusModel> allStatus = (from status in _ternContext.Status.AsNoTracking()
+                                           select new StatusModel
                                      {
                                          StatusId = status.StatusId,
                                          StatusType = status.StatusType

@@ -16,7 +16,7 @@ namespace Tern.Data.SubTaskRepository
         }
         public async Task<List<SubTaskModel>> GetSubTask(int taskId)
         {
-            var searchedSubTask = await (from subTask in _ternContext.SubTasks
+            var searchedSubTask = await (from subTask in _ternContext.SubTasks.AsNoTracking()
                                          where subTask.TaskId == taskId
                                          select new SubTaskModel
                                          {
